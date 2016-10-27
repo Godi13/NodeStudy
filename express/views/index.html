@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="stylesheets/index.css">
-  <title>测试首页</title>
-</head>
-<body>
-  Hello Node
-  <form action="/index" method="post">
-    <input type="text" name="username" />
-    <input type="submit" value="提交" />
-  </form>
-  <script type="text/javascript" src="scripts/index.js"></script>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+<script type="text/javascript" src="scripts/index.js"></script>
+{% endblock %}
+
+{% block content %}
+<form role="form">
+  <div class="form-group">
+    <label for="username">用户名</label>
+    <input type="email" class="form-control" id="username" placeholder="请输入用户名">
+  </div>
+  <button type="submit" id="btnsubmit" class="btn btn-info">提交</button>
+</form>
+{% endblock %}
