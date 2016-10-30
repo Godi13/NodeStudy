@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "forever -w app.js"
+    "babel-index": "babel -w app.es -o app.js",
+    "babel-ajax": "babel -w index.js -o index-o.js",
+    "start": "forever -w app.js && babel-ajax && babel-index"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",

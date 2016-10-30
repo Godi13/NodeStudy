@@ -7,14 +7,13 @@ const mysql = require('mysql');
 const co = require('co');
 
 const app = new Koa();
+app.use(serve('public'));
 app.use(router.routes());
 app.use(router.allowedMethods());
 require("babel-core/register");
 require("babel-polyfill");
 
-app.use(serve('public'));
-
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -31,11 +30,11 @@ connection.connect((err) => {
 
 router.get('/receive', async (ctx, next) => {
   console.log('前台发来的数据', ctx.query.num);
-  var post = {
+  const post = {
     num: ctx.query.num
   };
 
-  var query = new Promise((resolve, reject) => {
+  const query = new Promise((resolve, reject) => {
     connection.query('INSERT INTO num SET ?', post, (err, result) => {
       if (err) {
         reject({

@@ -11,7 +11,7 @@ module.exports = function (config) {
 		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
 		frameworks: ['jasmine'],
 
-		files: ['test/*.js'],
+		files: ['test/*.js', 'public/scripts/add.js'],
 		// exclude 测试时，浏览器会忽略掉这个list里面的文件，不加载它们
 		exclude: ['karma.conf.js'],
 
