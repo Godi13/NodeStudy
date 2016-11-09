@@ -4,6 +4,7 @@ const path = require('path')
 const Koa = require('koa');
 const router = require('koa-router')();
 const mysql = require('mysql');
+const koaBody = require('koa-body')();  //post request need
 const co = require('co');
 
 const app = new Koa();
@@ -28,10 +29,12 @@ connection.connect((err) => {
   console.log('connected as id ' + connection.threadId);
 });
 
-router.get('/receive', async (ctx, next) => {
-  console.log('前台发来的数据', ctx.query.num);
+router.post('/receive', koaBody, async (ctx, next) => {
+  // console.log('前台发来的数据', ctx.query.num);
+  console.log('前台发来的数据', ctx.request.body);
+
   const post = {
-    num: ctx.query.num
+    num: ctx.request.body.num
   };
 
   const query = new Promise((resolve, reject) => {

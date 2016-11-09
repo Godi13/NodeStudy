@@ -20,7 +20,7 @@ class praiseButton {
 
 				$.ajax({
 					url: '/receive',
-					type: 'get',
+					type: 'post',
 					dataType: 'json',
 					data: {
 						num: this.num

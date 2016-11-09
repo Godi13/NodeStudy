@@ -41,7 +41,7 @@ var praiseButton = function () {
 
 					$.ajax({
 						url: '/receive',
-						type: 'get',
+						type: 'post',
 						dataType: 'json',
 						data: {
 							num: _this.num
