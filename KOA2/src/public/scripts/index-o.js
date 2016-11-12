@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
+var f = "";
 var _createClass = function() {
     function defineProperties(target, props) {
         for (var i = 0; i < props.length; i++) {
@@ -50,7 +50,6 @@ function _classCallCheck(instance, Constructor) {
 }
 
 //声明父类
-
 var praiseButton = function() {
     function praiseButton(num, element) {
         _classCallCheck(this, praiseButton);
@@ -68,20 +67,34 @@ var praiseButton = function() {
 
             //点击动作 回掉使用箭头函数
             this.element.click(function() {
-                if (_this.num < 10) {
-                    //如果点击数量小于10 直接去掉滤镜
-                    _this.element.css('-webkit-filter', 'grayscale(0)');
-                    $('#animation').addClass('num');
-                    _this.num = _this.num + add(_this.num);
-                    setTimeout(function() {
-                        $('#animation').removeClass('num');
-                    }, 1000);
-                } else {
-                    //如果点击数量大于10 加灰
-                    _this.element.css('-webkit-filter', 'grayscale(1)');
-                    _this.num = 0;
+                if (f) {
+                    clearTimeout(f);
                 }
-                console.log(_this.num);
+                f = setTimeout(function() {
+                    if (_this.num < 10) {
+                        //如果点击数量小于10 直接去掉滤镜
+                        _this.element.css('-webkit-filter', 'grayscale(0)');
+                        $('#animation').addClass('num');
+                        _this.num = add(_this.num);
+
+                        setTimeout(function() {
+                            $('#animation').removeClass('num');
+                        }, 1000);
+                    } else {
+                        //如果点击数量大于10 加灰
+                        _this.element.css('-webkit-filter', 'grayscale(1)');
+                        _this.num = 0;
+                    }
+                    console.log(_this.num);
+                    axios.get('/getdata?num=' + _this.num)
+                        .then(function(response) {
+                            alert(response.data.msg);
+                        })
+                        .catch(function(error) {
+                            alert('http error');
+                        });
+                }, 1000);
+
             });
         }
     }]);
@@ -97,7 +110,7 @@ var thumb = function(_praiseButton) {
     function thumb(num, element) {
         _classCallCheck(this, thumb);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(thumb).call(this, num, element));
+        return _possibleConstructorReturn(this, (thumb.__proto__ || Object.getPrototypeOf(thumb)).call(this, num, element));
     }
 
     return thumb;
