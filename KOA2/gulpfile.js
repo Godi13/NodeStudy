@@ -11,22 +11,15 @@ convert = (src, dest) => {
 
 gulp.task('build', () => {
   convert('./src/app.es', './src');
-});
-
-gulp.task('config', () => {
   convert('./src/conf/*.es', './src/conf');
-})
-
-gulp.task('controllers', () => {
   convert('./src/controllers/*.es', './src/controllers');
-})
-
-gulp.task('models', () => {
   convert('./src/models/*.es', './src/models');
+  convert('./src/public/scripts/index.es', './src/public/scripts/');
+  convert('./src/public/scripts/component.es', './src/public/scripts/');
 })
 
 // gulp.task('watch', () => {
 //   gulp.watch('./src/app.es', ['build']);
 // });
 
-gulp.task('default', ['build', 'config', 'controllers', 'models']);
+gulp.task('default', ['build']);

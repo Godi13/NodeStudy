@@ -1,0 +1,1 @@
+webpackJsonp([0],[function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function u(){console.log(s),console.log(l.default),(0,l.default)("#js-test").click(function(t){alert("我是jquery")})}var c=n(1),l=o(c);n(2);var s="test es6";u()},,function(t,e){}]);

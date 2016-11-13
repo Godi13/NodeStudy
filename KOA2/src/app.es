@@ -31,4 +31,6 @@ app.use(convert(serve(CONFIG.get('staticDir'))));
 app.listen(CONFIG.get('port'));
 console.log('listening on port %s', CONFIG.get('port'));
 
-export default app;
+// export default app;
+// 测试 service
+module.exports = app;
