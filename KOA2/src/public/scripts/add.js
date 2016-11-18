@@ -1,3 +1,6 @@
-window.add = function(num) {
-    return num + 1;
-}
+'use strict'
+const add = (num) => num + 1;
+
+window.test = { add };
+
+export default add;

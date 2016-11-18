@@ -7,34 +7,5 @@
 {% endblock %}
 
 {% block content %}
-<div class="hand" id="thumb">
-  <div class="finger"></div>
-  <div class="finger"></div>
-  <div class="finger"></div>
-  <div class="finger"></div>
-  <div class="finger thumb"></div>
-  <div class="arm"></div>
-</div>
-<span class="hide" id="animation">+1</span>
-<script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="scripts/add.js"></script>
-<script type="text/javascript" src="scripts/system.js"></script>
-<script type="text/javascript" src="scripts/component.js"></script>
-<script type="text/javascript" src="http://cdn.bootcss.com/axios/0.15.2/axios.min.js"></script>
-<script type="text/javascript">
-SystemJS.config({
-  baseURL: '/scripts'
-});
-
-function callback($) {
-  var f = new $.thumb(0, $('#thumb'));
-  f.clickAction();
-}
-SystemJS.import('index.js').then(function(m) {
-  $.extend({
-    thumb: m.default.thumb
-  });
-  callback($);
-});
-</script>
+<x-foo></x-foo>
 {% endblock %}

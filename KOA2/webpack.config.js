@@ -2,16 +2,18 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var outputPath = path.join(__dirname, './build');
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+var outputPath = path.join(__dirname, './build');
+var entryPath = path.join(__dirname, './src/public/');
 // var LiveReloadPlugin = require('webpack-livereload-plugin');
 module.exports = {
   entry: {
-    index: __dirname + "/src/public/scripts/index"
+    index: entryPath + "/scripts/init"
   },
   output: {
     path: outputPath,
-    filename: "scripts/[name]-[chunkhash:5].js"
+    chunkFilename: "scripts/[id]-[chunkhash:5].js",
+    filename: "/public/scripts/[name]-[chunkhash:5].js"
   },
   module: {
     loaders: [{
@@ -19,7 +21,7 @@ module.exports = {
       loader: 'babel',
       exclude: /node_modules/
     }, {
-      test: /\.css$/i,
+      test: /\.less$/i,
       loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
     }]
   },
@@ -29,25 +31,25 @@ module.exports = {
       minify: {
         collapseWhitespace: true
       },
-      filename: 'scripts/[name].[chunkhash:5].bundle.js'
+      filename: 'public/scripts/[name]-[chunkhash:5].bundle.js'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/views/layout.html',
-      minify: {
-        removeCommets: true,
-        collapseWhitespace: true
-      }
+      filename: 'views/index.html',
+      template: './src/views/index.js',
+      // minify: {
+      //   removeCommets: true,
+      //   collapseWhitespace: true
+      // }
     }),
-    new uglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    // new uglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     // new LiveReloadPlugin({
     //     appendScriptTag: true
     // }),
-    new ExtractTextPlugin('stylesheets/[name]-[chunkhash:5].css')
+    new ExtractTextPlugin('/public/stylesheets/[name]-[chunkhash:5].css')
   ],
   resolve: {
     extensions: ["", ".js", ".es", ".less"]
