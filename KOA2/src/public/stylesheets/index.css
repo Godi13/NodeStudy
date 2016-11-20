@@ -24,7 +24,7 @@
     border-left: 1px solid #b9511b;
     border-right: 1px solid #b9511b;
     border-top: 1px solid #b9511b;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .hand .finger:nth-of-type( 5) {
@@ -66,8 +66,8 @@
     top: 2%;
 }
 
-.hand .finger:before,
-.hand .finger:after {
+.hand .finger:after,
+.hand .finger:before {
     content: "";
     position: absolute;
     top: 5%;
@@ -77,7 +77,7 @@
     border-top-left-radius: 75px;
     border-top-right-radius: 75px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .hand .finger:after {
@@ -106,7 +106,6 @@
     /* Safari 和 Chrome */
     font-size: 40px;
     color: #FF1177;
-    ;
     position: absolute;
     right: 10%;
     top: 10%;
@@ -115,21 +114,22 @@
 .hide {
     display: none;
 }
-
 @-webkit-keyframes neon2 {
     from {
         opacity: 0;
         -webkit-transform: translateY(-20px);
         text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
     }
+
     to {
         opacity: 1;
-        -webkit-transform: translateY(0) text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+        -webkit-transform: translateY(0);
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
     }
 }
 
-html,
-body {
+body,
+html {
     height: 100%;
     overflow: hidden;
 }

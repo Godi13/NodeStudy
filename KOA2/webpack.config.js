@@ -8,21 +8,21 @@ var entryPath = path.join(__dirname, './src/public/');
 // var LiveReloadPlugin = require('webpack-livereload-plugin');
 module.exports = {
   entry: {
-    index: entryPath + "/scripts/init"
+    index: entryPath + "scripts/init"
   },
   output: {
     path: outputPath,
     chunkFilename: "scripts/[id]-[chunkhash:5].js",
-    filename: "/public/scripts/[name]-[chunkhash:5].js"
+    filename: "public/scripts/[name]-[chunkhash:5].js"
   },
   module: {
     loaders: [{
-      test: /\.es$/,
+      test: /\.js$/,
       loader: 'babel',
       exclude: /node_modules/
     }, {
-      test: /\.less$/i,
-      loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
     }]
   },
   plugins: [
@@ -36,10 +36,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'views/index.html',
       template: './src/views/index.js',
-      // minify: {
-      //   removeCommets: true,
-      //   collapseWhitespace: true
-      // }
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      },
+      chunks: []
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'views/layout.html',
+      template: './src/views/layout.html',
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      },
+      chunks: []
     }),
     // new uglifyJsPlugin({
     //   compress: {
@@ -49,7 +59,7 @@ module.exports = {
     // new LiveReloadPlugin({
     //     appendScriptTag: true
     // }),
-    new ExtractTextPlugin('/public/stylesheets/[name]-[chunkhash:5].css')
+    new ExtractTextPlugin('public/stylesheets/[name]-[chunkhash:5].css')
   ],
   resolve: {
     extensions: ["", ".js", ".es", ".less"]
